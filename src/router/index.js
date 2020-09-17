@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import login from '../components/login.vue'
 import home from '../components/home.vue'
 import welcome from '../components/welcome.vue'
+import users from '../components/users/users.vue'
 
 Vue.use(VueRouter)
 
@@ -15,9 +16,14 @@ const routes = [
         component: home,
         redirect: '/welcome',
         children: [{
-            path: '/welcome',
-            component: welcome
-        }]
+                path: '/welcome',
+                component: welcome
+            },
+            {
+                path: '/users',
+                component: users
+            }
+        ]
     }
 ]
 
@@ -25,7 +31,7 @@ const router = new VueRouter({
     routes
 });
 
-//导航守卫
+//路由导航的前置守卫
 router.beforeEach((to, from, next) => {
     // 如果是访问login页面  直接放行
     //to表示将要去的路由地址对象

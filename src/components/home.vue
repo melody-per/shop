@@ -1,5 +1,6 @@
 <template>
   <el-container class="home_container">
+  <!-- 头部 -->
   <el-header>
       <div>
           <div class="left">
@@ -9,9 +10,12 @@
            <el-button type="info" @click="logout">退出</el-button>
       </div>
   </el-header>
+  <!-- 侧边栏 -->
   <el-container>
     <el-aside :width="isCollapse?'64px':'200px'">
+      <!-- 侧边切换按钮 -->
       <div class="toggle_btn" @click="isCollapse=!isCollapse">| | |</div>
+      <!-- 侧边导航栏 -->
       <el-menu
       background-color="#333744"
       text-color="#fff"
@@ -31,6 +35,7 @@
       </el-submenu>
     </el-menu>
     </el-aside>
+    <!-- 中心home -->
     <el-main>
       <!-- 路由占位符 -->
       <router-view></router-view>
@@ -52,7 +57,9 @@ data(){
     '102':'iconfont icon-danju',
     '145':'iconfont icon-baobiao',
   },
+  // 激活的菜单
   activePath:'',
+  // 控制菜单展开折叠布尔值
   isCollapse: false
   }
 },
@@ -80,7 +87,7 @@ methods:{
     },
     //修改激活路径
     savePath(path){
-        console.log(path);
+        // console.log(path);
         this.activePath=path;
         //将路径保存到本地存储中
         sessionStorage.setItem('path',path)

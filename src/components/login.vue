@@ -29,9 +29,10 @@ export default {
 data(){
     return {
         formmsg:{
-            username: "1",
-            password: "2",
+            username: "admin",
+            password: "123456",
         },
+         //   数据的校验规则
         loginRules:{
           username: [
             { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -47,17 +48,23 @@ data(){
 },
 methods: {
 resetLogin() {
+  // resetFields()重置表单内容并移除校验规则
   this.$refs.loginformRef.resetFields();
 },
 login() {
+   // 发送请求之前先对表单进行预校验
   this.$refs.loginformRef.validate(async valid=> {
+    // valid 是一个布尔值true表示表单预校验通过,可以发送请求,false表示没有通过表单验证,不允许发送请求
     if(!valid) return;
-    // console.log(this);
+   
+    // console.log(this); // vue实例
     const { data: res }=await this.$http.post("login", this.formmsg);
     if(res.meta.status != 200) return this.$message.error("登录失败！");
     this.$message.success("登录成功！")
     console.log(res);
+    // 在登录成功之后将返回的token令牌保存在本地
     sessionStorage.setItem('token', res.data.token)
+    // 跳转到home页面 编程式导航 
     this.$router.push('/home') 
   });
 }
