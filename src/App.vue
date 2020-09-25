@@ -6,16 +6,15 @@
 </template>
 
 <script>
-
-export default {
-}
+export default {};
 </script>
 
 <style>
-#app,body,html {
+#app,
+body,
+html {
   margin: 0;
   width: 100%;
   height: 100%;
 }
-
 </style>
